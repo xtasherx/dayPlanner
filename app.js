@@ -17,13 +17,14 @@ $(document).ready(function () {
     $(this).text(events2[eventKey]);
 
     // check to see if the current time blocks are in the past and add styling accordingly
+    // find a way to check if time is in the present
     if ($(this).attr("data-time") < now) {
       $(this).css("background-color", "lavenderblush");
     } else {
       $(this).css("background-color", "white");
     }
   });
-  // event listener for save button stores that timeslot variable into loca
+  // event listener for save button stores that timeslot variable into local storage
   $(".btn").on("click", function () {
     buttonId = $(this).attr("id");
     events2[buttonId] = $(this).prev().val();

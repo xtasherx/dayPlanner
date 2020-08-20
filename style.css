@@ -9,7 +9,6 @@ textarea {
   border: none;
   resize: none;
   color: #000000;
-
   text-align: center;
 }
 
@@ -22,7 +21,6 @@ textarea {
 }
 
 .display-3 {
-  font-family: "Bungee Inline", cursive;
 }
 
 .container {
