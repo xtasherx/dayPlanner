@@ -6,34 +6,30 @@ $(document).ready(function () {
   const anHourAgo = moment().subtract(1, "hour").format("HHmmss"); // time minus 1hr
   const aSecAhead = moment().add(1, "second").format("HHmmss"); // time plus one second
 
-  // WHEN I refresh the page  --  THEN the saved events persist
+  // Declare variable to hold local storage data & conditional to check if it is empty on load
+  let events = localStorage.getItem("json")
+    ? JSON.parse(localStorage.getItem("json"))
+    : {};
 
-  // retrieve event data from local storage on page load
-  const returnStorage = localStorage.getItem("json");
-  // save current local storage data from JSON back to an object in JS on page load
-  const events2 = JSON.parse(returnStorage);
+  // event listener for save button stores timeslot value into local storage
+  $(".btn").on("click", function () {
+    let buttonId = $(this).attr("id");
+    events[buttonId] = $(this).prev().val();
+    localStorage.setItem("json", JSON.stringify(events));
+  });
 
-  // write out events on load to their timeslots
   $(".form-control").each(function (i) {
     // check to see if the current time blocks are in the past and add styling accordingly
-    // find a way to check if time is in the present
-
     if ($(this).attr("data-time") < anHourAgo) {
-      $(this).css("background-color", "slategrey");
+      $(this).css("background-color", "gainsboro");
     }
 
     if ($(this).attr("data-time") > aSecAhead) {
       $(this).css("background-color", "lavenderblush");
     }
 
-    const eventKey = $(this).next().attr("id");
-    $(this).text(events2[eventKey]);
-  });
-
-  // event listener for save button stores that timeslot variable into local storage
-  $(".btn").on("click", function () {
-    buttonId = $(this).attr("id");
-    events2[buttonId] = $(this).prev().val();
-    localStorage.setItem("json", JSON.stringify(events2));
+    // write items into their time blocks
+    let eventKey = $(this).next().attr("id");
+    $(this).text(events[eventKey]);
   });
 });
