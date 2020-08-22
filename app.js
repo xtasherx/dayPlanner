@@ -11,9 +11,9 @@ $(document).ready(function () {
     ? JSON.parse(localStorage.getItem("json"))
     : {};
 
-  // event listener for save button stores timeslot value into local storage
+  // event listener for <i class="fas fa-save"></i> button stores timeslot value into local storage
   $(".btn").on("click", function () {
-    let buttonId = $(this).attr("id");
+    const buttonId = $(this).attr("id");
     events[buttonId] = $(this).prev().val();
     localStorage.setItem("json", JSON.stringify(events));
   });
@@ -22,14 +22,16 @@ $(document).ready(function () {
     // check to see if the current time blocks are in the past and add styling accordingly
     if ($(this).attr("data-time") < anHourAgo) {
       $(this).css("background-color", "gainsboro");
+      // greyout text in fields that are in the past
+      $(this).css("color", "#a7a8ab");
     }
 
     if ($(this).attr("data-time") > aSecAhead) {
-      $(this).css("background-color", "lavenderblush");
+      $(this).css("background-color", "white");
     }
 
     // write items into their time blocks
-    let eventKey = $(this).next().attr("id");
+    const eventKey = $(this).next().attr("id");
     $(this).text(events[eventKey]);
   });
 });

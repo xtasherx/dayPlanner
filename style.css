@@ -12,15 +12,20 @@ textarea {
   text-align: center;
 }
 
+.form-control {
+  background-color: lavenderblush;
+}
+
 .jumbotron {
   text-align: center;
   background-color: transparent;
   color: black;
   border-radius: 0;
-  border-bottom: 5px dotted black;
+  border-bottom: 1px solid black;
 }
 
 .display-3 {
+  font-weight: 800;
 }
 
 .container {
